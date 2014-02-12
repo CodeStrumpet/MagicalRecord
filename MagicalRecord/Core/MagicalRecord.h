@@ -22,9 +22,11 @@
 
 #if MR_ENABLE_ACTIVE_RECORD_LOGGING != 0
       // First, check if we can use Cocoalumberjack for logging
+
     #if defined(LOG_VERBOSE) || defined(COCOAPODS_POD_AVAILABLE_CocoaLumberjack)
         #import "DDLog.h"
-        extern int ddLogLevel;
+        
+        static const int ddLogLevel;
         #ifdef MR_LOG_CONTEXT
             // Log to CocoaLumberjack with custom context
             #define MRLog(frmt, ...)  ASYNC_LOG_OBJC_MAYBE(ddLogLevel, LOG_FLAG_VERBOSE, MR_LOG_CONTEXT, frmt, ##__VA_ARGS__)
